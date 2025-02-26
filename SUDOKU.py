@@ -42,11 +42,23 @@ def draw_board(win, board, selected, incorrect_cells, fixed_cells):
         pygame.draw.line(win, (0, 0, 0,), (0, 50 * i), (450, 50 * i), 2)
 
 #Draw letters on the board
-
-
-#Colors: Pre-filled letters(Black), Incorrect Placement(Red), Player Input(Blue)
+    for i range(9):
+        for j in range(9):
+            if board[i][j] != "":
+                font = pygame.font.Font(None, 36)
+            #Colors: Pre-filled letters(Black), Incorrect Placement(Red), Player Input(Blue)
+            color = (0, 0, 0) if (i, j) in fixed_cells else (225, 0, 0) if (i, j) in incorrect_cells else (0, 0, 225)
+            text = font.render(board[i][j], True, color)
+            win.blit(text, (j * 50 + 15, i * 50 + 10))
 #Highlight selected cell
-#Game Loop
+    if selected:
+        pygame.draw.rect(win, (0, 255, 0), (selected[1] * 50, selected [0] * 50, 50, 50), 3)
+    pygame.display.flip()
+
+#Main Game Loop
+def main():
+
+
 #Check mistakes
 #Arrow Key Game Navigation
 #Select cell using mouse also
