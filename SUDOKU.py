@@ -88,8 +88,20 @@ def main():
                         elif event.key == pygame.K_RIGHT < 8:
                             selected = (row, col + 1)
                 elif pygame.K_a <= event.key <= pygame.K_i:
-                    
+                    #Input letters into empty spaces
+                    if selected and selected not in fixed_cells:
+                        row, col = selected
+                        board[row][col] = chr(event.key).upper()
+            elif even.type == pygame.MOUSEBUTTONDOWN:
+                #Select cell using mouse also
+                x, y = event.pos
+                selected = (y // 50, x //50)
 
-#Select cell using mouse also
-#Check if the board is correctly completed
+        #Check if the board is correctly completed
+        if len(incorrect_cells) == 0 and all(board[r][c] != "" for r in range(9) for c in range(9)):
+            print("Sudoku Letter Puzzle Completed Correctly! Thank you for playing!")
+            running = False
+
 #
+
+
