@@ -57,10 +57,39 @@ def draw_board(win, board, selected, incorrect_cells, fixed_cells):
 
 #Main Game Loop
 def main():
+    pygame.init()
+    win = pygame.display.set_mode((450, 450))
+    pygame.display.set_caption("Sudoku but Letters")
+    board = create_board()
+    fixed_cells = {(r, c) for r in range(9) for c in range(9) if board[r][c] != ""}
+    selected = None
+    running = True
 
+    while running
+        incorrect_cells = check_board(board) #Checks mistakes
+        draw_board(win, board, selected, incorrect_cells, fixed_cells)
 
-#Check mistakes
-#Arrow Key Game Navigation
+        for event in pygame.event.get()
+            if event.type == pygame.QUIT:
+                running = Flase
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    running = False #Exits game
+                elif event.key in [pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT]:
+                #Arrow Key Game Navigation
+                    if selected:
+                        row, col = selected
+                        if event.key == pygame.K_UP and row > 0:
+                            selected = (row - 1, col)
+                        elif event.key == pygame.K_DOWN and row < 8:
+                            selected = (row + 1, col)
+                        elif event.key == pygame.K_LEFT and col > 0:
+                            selected = (row, col - 1)
+                        elif event.key == pygame.K_RIGHT < 8:
+                            selected = (row, col + 1)
+                elif pygame.K_a <= event.key <= pygame.K_i:
+                    
+
 #Select cell using mouse also
 #Check if the board is correctly completed
 #
