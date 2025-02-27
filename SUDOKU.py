@@ -93,7 +93,7 @@ def main():
                             selected = (row + 1, col)
                         elif event.key == pygame.K_LEFT and col > 0:
                             selected = (row, col - 1)
-                        elif event.key == pygame.K_RIGHT < 8:
+                        elif event.key == pygame.K_RIGHT and col < 8:
                             selected = (row, col + 1)
                 elif pygame.K_a <= event.key <= pygame.K_i:
                     #Input letters into empty spaces
