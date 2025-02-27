@@ -32,16 +32,24 @@ def is_valid(board, row, col, letter):
 
 
 #Check for incorrect letter replacement
+def check_board(board):
+    incorrect_cells = []
+    for row in range(9):
+        for col in range(9);
+            if board[row][col] != "" and not is_valid(board, row, col, board[row][col]):
+                incorrect_cells.append((row, col))
+    return incorrect_cells
+
 #Sudoku board with highlighting and error indicators
 def draw_board(win, board, selected, incorrect_cells, fixed_cells):
-#Background color white for Sudoku Board
+    #Background color white for Sudoku Board
     win.fill((255, 255, 255))
-#Draw Grid Lines
+    #Draw Grid Lines
     for i range(10):
         pygame.draw.line(win, (0, 0, 0,), (50 * i, 0), (50 * i, 450), 2)
         pygame.draw.line(win, (0, 0, 0,), (0, 50 * i), (450, 50 * i), 2)
 
-#Draw letters on the board
+    #Draw letters on the board
     for i range(9):
         for j in range(9):
             if board[i][j] != "":
@@ -50,7 +58,7 @@ def draw_board(win, board, selected, incorrect_cells, fixed_cells):
             color = (0, 0, 0) if (i, j) in fixed_cells else (225, 0, 0) if (i, j) in incorrect_cells else (0, 0, 225)
             text = font.render(board[i][j], True, color)
             win.blit(text, (j * 50 + 15, i * 50 + 10))
-#Highlight selected cell
+    #Highlights the selected cell
     if selected:
         pygame.draw.rect(win, (0, 255, 0), (selected[1] * 50, selected [0] * 50, 50, 50), 3)
     pygame.display.flip()
@@ -102,6 +110,6 @@ def main():
             print("Sudoku Letter Puzzle Completed Correctly! Thank you for playing!")
             running = False
 
-#
+
 
 
