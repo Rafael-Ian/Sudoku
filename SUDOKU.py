@@ -35,7 +35,7 @@ def is_valid(board, row, col, letter):
 def check_board(board):
     incorrect_cells = []
     for row in range(9):
-        for col in range(9);
+        for col in range(9):
             if board[row][col] != "" and not is_valid(board, row, col, board[row][col]):
                 incorrect_cells.append((row, col))
     return incorrect_cells
@@ -45,12 +45,12 @@ def draw_board(win, board, selected, incorrect_cells, fixed_cells):
     #Background color white for Sudoku Board
     win.fill((255, 255, 255))
     #Draw Grid Lines
-    for i range(10):
+    for i in range(10):
         pygame.draw.line(win, (0, 0, 0,), (50 * i, 0), (50 * i, 450), 2)
         pygame.draw.line(win, (0, 0, 0,), (0, 50 * i), (450, 50 * i), 2)
 
     #Draw letters on the board
-    for i range(9):
+    for i in range(9):
         for j in range(9):
             if board[i][j] != "":
                 font = pygame.font.Font(None, 36)
@@ -73,13 +73,13 @@ def main():
     selected = None
     running = True
 
-    while running
+    while running:
         incorrect_cells = check_board(board) #Checks mistakes
         draw_board(win, board, selected, incorrect_cells, fixed_cells)
 
-        for event in pygame.event.get()
+        for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                running = Flase
+                running = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     running = False #Exits game
@@ -100,7 +100,7 @@ def main():
                     if selected and selected not in fixed_cells:
                         row, col = selected
                         board[row][col] = chr(event.key).upper()
-            elif even.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN:
                 #Select cell using mouse also
                 x, y = event.pos
                 selected = (y // 50, x //50)
@@ -109,7 +109,9 @@ def main():
         if len(incorrect_cells) == 0 and all(board[r][c] != "" for r in range(9) for c in range(9)):
             print("Sudoku Letter Puzzle Completed Correctly! Thank you for playing!")
             running = False
+    pygame.quit()
+    sys.exit()
 
-
-
+if __name__ == "__main__":
+    main()
 
